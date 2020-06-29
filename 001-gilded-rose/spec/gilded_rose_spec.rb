@@ -13,7 +13,17 @@ RSpec.describe GildedRose do
 
     it "does stuff" do
       verify do
-        items = [Item.new("Aged Brie", 0, 0)]
+        names = [
+          "foo",
+          "Aged Brie",
+          "Backstage passes to a TAFKAL80ETC concert",
+          "Sulfuras, Hand of Ragnaros"
+        ]
+        sell_ins = [-1, 0, 1, 5, 6, 7, 10, 11, 12]
+        qualities = [-1, 0, 1, 49, 50, 51]
+        items = names.product(sell_ins, qualities).map { |(name, sell_in, quality)|
+          Item.new(name, sell_in, quality)
+        }
         gilded_rose = GildedRose.new(items)
 
         gilded_rose.update_quality
