@@ -10,6 +10,11 @@ class GildedRose
   private
 
   def update_item(item)
+    if item.name == "Aged Brie"
+      
+    else
+      
+    end
     applesauce(item)
   end
 
