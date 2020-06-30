@@ -20,6 +20,8 @@ class GildedRose
           item.quality = item.quality + 1
         end
       end
+    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+      applesauce(item)
     else
       applesauce(item)
     end
