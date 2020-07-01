@@ -61,6 +61,7 @@ class GildedRose
         end
       end
     end
+    nil
   end
 end
 
