@@ -37,10 +37,7 @@ class GildedRose
       end
       item.sell_in = item.sell_in - 1
       if item.sell_in < 0
-        if item.name != "Backstage passes to a TAFKAL80ETC concert"
-        else
-          item.quality = item.quality - item.quality
-        end
+        item.quality = item.quality - item.quality
       end
       nil
     else
