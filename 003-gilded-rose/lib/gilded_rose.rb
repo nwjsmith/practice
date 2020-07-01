@@ -21,6 +21,8 @@ class GildedRose
         end
       end
       nil
+    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+      applesauce(item)
     else
       applesauce(item)
     end
