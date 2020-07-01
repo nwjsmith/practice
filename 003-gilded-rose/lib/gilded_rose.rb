@@ -10,16 +10,7 @@ class GildedRose
   private
 
   def update_item(item)
-    if item.name == "Aged Brie"
-      if item.quality < 50
-        item.quality = item.quality + 1
-      end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
+    if item.name == "Sulfuras, Hand of Ragnaros"
       nil
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       if item.quality < 50
@@ -40,13 +31,22 @@ class GildedRose
         item.quality = item.quality - item.quality
       end
       nil
-    elsif item.name == "Sulfuras, Hand of Ragnaros"
+    elsif item.name == "Aged Brie"
+      item.sell_in = item.sell_in - 1
+      if item.quality < 50
+        item.quality = item.quality + 1
+      end
+      if item.sell_in < 0
+        if item.quality < 50
+          item.quality = item.quality + 1
+        end
+      end
       nil
     else
+      item.sell_in = item.sell_in - 1
       if item.quality > 0
         item.quality = item.quality - 1
       end
-      item.sell_in = item.sell_in - 1
       if item.sell_in < 0
         if item.quality > 0
           item.quality = item.quality - 1
