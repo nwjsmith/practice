@@ -9,5 +9,26 @@ RSpec.describe GildedRose do
 
       expect(items[0].name).to eq "foo"
     end
+
+    it 'is characterized' do
+      verify do
+        names = [
+          "Aged Brie"
+        ]
+        sell_ins = [
+          0
+        ]
+        qualities = [
+          0
+        ]
+        items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
+          Item.new(name, sell_in, quality)
+        }
+
+        GildedRose.new(items).update_quality
+
+        items.map(&:to_s)
+      end
+    end
   end
 end
