@@ -55,8 +55,6 @@ class GildedRose
       nil
     end
   end
-
-
 end
 
 class Item
