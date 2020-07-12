@@ -20,7 +20,7 @@ class GildedRose
     elsif item.name == "Aged Brie"
       update_aged_brie(item)
     else
-      update_basic_item(item)
+      BasicUpdater.new(item).update
     end
     nil
   end
@@ -56,20 +56,28 @@ class GildedRose
     end
   end
 
-  def update_basic_item(item)
-    BasicUpdater.new(item).update
-  end
+  class AgedBrieUpdater
+    attr_reader :item
 
-  def update_aged_brie(item)
-    if item.quality < 50
-      item.quality = item.quality + 1
+    def initialize(item)
+      @item = item
     end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
+
+    def update
       if item.quality < 50
         item.quality = item.quality + 1
       end
+      item.sell_in = item.sell_in - 1
+      if item.sell_in < 0
+        if item.quality < 50
+          item.quality = item.quality + 1
+        end
+      end
     end
+  end
+
+  def update_aged_brie(item)
+    AgedBrieUpdater.new(item).update
   end
 
   def update_backstage_passes(item)
