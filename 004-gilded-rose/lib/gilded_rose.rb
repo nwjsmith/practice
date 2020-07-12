@@ -14,7 +14,6 @@ class GildedRose
 
   def update(item)
     if item.name == "Sulfuras, Hand of Ragnaros"
-      item.sell_in = item.sell_in + 0
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       if item.quality < 50
         item.quality = item.quality + 1
