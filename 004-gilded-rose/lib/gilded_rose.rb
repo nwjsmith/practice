@@ -14,7 +14,7 @@ class GildedRose
 
   def update(item)
     if item.name == "Sulfuras, Hand of Ragnaros"
-      update_sulfuras(item)
+      SulfurasUpdater.new(item).update
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       update_backstage_passes(item)
     elsif item.name == "Aged Brie"
@@ -25,8 +25,18 @@ class GildedRose
     nil
   end
 
-  def update_sulfuras(item)
+  class SulfurasUpdater
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update
+    end
   end
+
+  def update_sulfuras(item) end
 
   def update_basic_item(item)
     if item.quality > 0
