@@ -16,9 +16,10 @@ RSpec.describe GildedRose do
         names = [
           "foo",
           "Aged Brie",
-          "Backstage passes to a TAFKAL80ETC concert"
+          "Backstage passes to a TAFKAL80ETC concert",
+          "Sulfuras, Hand of Ragnaros"
         ]
-        sell_ins = [0]
+        sell_ins = [-1, 0, 1]
         qualities = [0]
         items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
           Item.new(name, sell_in, quality)
