@@ -20,7 +20,7 @@ RSpec.describe GildedRose do
           "Sulfuras, Hand of Ragnaros"
         ]
         sell_ins = [-1, 0, 1, 5, 6, 7, 10, 11, 12]
-        qualities = [0]
+        qualities = [-1, 0, 1, 49, 50, 51]
         items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
           Item.new(name, sell_in, quality)
         }
