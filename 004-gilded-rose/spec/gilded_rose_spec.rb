@@ -13,7 +13,10 @@ RSpec.describe GildedRose do
 
     it 'is characterized' do
       verify do
-        names = ["foo"]
+        names = [
+          "foo",
+          "Aged Brie"
+        ]
         sell_ins = [0]
         qualities = [0]
         items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
