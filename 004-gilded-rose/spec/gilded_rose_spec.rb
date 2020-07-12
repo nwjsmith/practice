@@ -15,7 +15,8 @@ RSpec.describe GildedRose do
       verify do
         names = [
           "foo",
-          "Aged Brie"
+          "Aged Brie",
+          "Backstage passes to a TAFKAL80ETC concert"
         ]
         sell_ins = [0]
         qualities = [0]
