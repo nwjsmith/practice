@@ -44,18 +44,6 @@ class GildedRose
       end
       nil
     elsif item.name == "Sulfuras, Hand of Ragnaros"
-      if item.quality > 0
-        if item.name != "Sulfuras, Hand of Ragnaros"
-        end
-      end
-      if item.name != "Sulfuras, Hand of Ragnaros"
-      end
-      if item.sell_in < 0
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-          end
-        end
-      end
       nil
     else
       if item.quality > 0
