@@ -18,7 +18,7 @@ class GildedRose
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       update_backstage_passes(item)
     elsif item.name == "Aged Brie"
-      update_aged_brie(item)
+      AgedBrieUpdater.new(item).update
     else
       BasicUpdater.new(item).update
     end
@@ -76,9 +76,6 @@ class GildedRose
     end
   end
 
-  def update_aged_brie(item)
-    AgedBrieUpdater.new(item).update
-  end
 
   def update_backstage_passes(item)
     if item.quality < 50
