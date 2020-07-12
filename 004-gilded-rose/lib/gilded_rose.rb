@@ -14,22 +14,30 @@ class GildedRose
 
   def update(item)
     if item.name == "Sulfuras, Hand of Ragnaros"
+      update_sulfuras(item)
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       update_backstage_passes(item)
     elsif item.name == "Aged Brie"
       update_aged_brie(item)
     else
+      update_basic_item(item)
+    end
+    nil
+  end
+
+  def update_sulfuras(item)
+  end
+
+  def update_basic_item(item)
+    if item.quality > 0
+      item.quality = item.quality - 1
+    end
+    item.sell_in = item.sell_in - 1
+    if item.sell_in < 0
       if item.quality > 0
         item.quality = item.quality - 1
       end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
-        if item.quality > 0
-          item.quality = item.quality - 1
-        end
-      end
     end
-    nil
   end
 
   def update_aged_brie(item)
@@ -63,8 +71,6 @@ class GildedRose
       item.quality = item.quality - item.quality
     end
   end
-
-
 end
 
 class Item
