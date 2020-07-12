@@ -36,8 +36,6 @@ class GildedRose
     end
   end
 
-  def update_sulfuras(item) end
-
   def update_basic_item(item)
     if item.quality > 0
       item.quality = item.quality - 1
