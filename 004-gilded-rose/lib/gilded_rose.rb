@@ -7,6 +7,7 @@ class GildedRose
 
   def update_quality
     items.each(&method(:update))
+    self
   end
 
   private

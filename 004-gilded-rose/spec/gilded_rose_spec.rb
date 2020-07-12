@@ -11,6 +11,13 @@ RSpec.describe GildedRose do
       expect(items[0].name).to eq "foo"
     end
 
+    it "returns self" do
+      items = []
+      gilded_rose = GildedRose.new(items)
+
+      expect(gilded_rose.update_quality).to eq gilded_rose
+    end
+
     it 'is characterized' do
       verify do
         names = [
