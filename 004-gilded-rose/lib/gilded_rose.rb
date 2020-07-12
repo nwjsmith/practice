@@ -16,7 +16,7 @@ class GildedRose
     if item.name == "Sulfuras, Hand of Ragnaros"
       SulfurasUpdater.new(item).update
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-      update_backstage_passes(item)
+      BackstagePassesUpdater.new(item).update
     elsif item.name == "Aged Brie"
       AgedBrieUpdater.new(item).update
     else
@@ -104,9 +104,6 @@ class GildedRose
     end
   end
 
-  def update_backstage_passes(item)
-    BackstagePassesUpdater.new(item).update
-  end
 end
 
 class Item
