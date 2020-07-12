@@ -19,7 +19,7 @@ RSpec.describe GildedRose do
           "Backstage passes to a TAFKAL80ETC concert",
           "Sulfuras, Hand of Ragnaros"
         ]
-        sell_ins = [-1, 0, 1, 5, 6, 7]
+        sell_ins = [-1, 0, 1, 5, 6, 7, 10, 11, 12]
         qualities = [0]
         items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
           Item.new(name, sell_in, quality)
