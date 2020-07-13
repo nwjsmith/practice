@@ -20,7 +20,7 @@ class GildedRose
     elsif item.name == "Aged Brie"
       AgedBrieUpdater.new(item).update
     else
-      BasicUpdater.new(item).update
+      BasicItemUpdater.new(item).update
     end
     nil
   end
@@ -36,7 +36,7 @@ class GildedRose
     end
   end
 
-  class BasicUpdater
+  class BasicItemUpdater
     attr_reader :item
 
     def initialize(item)
