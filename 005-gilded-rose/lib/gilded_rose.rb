@@ -72,7 +72,6 @@ class GildedRose
             end
           end
         else
-          item.quality = item.quality - item.quality
         end
       end
       nil
