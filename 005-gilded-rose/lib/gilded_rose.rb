@@ -59,6 +59,14 @@ class GildedRose
   end
 end
 
+class AgedBrieUpdater
+  attr_reader :item
+
+  def initialize(item)
+    @item = item
+  end
+end
+
 class Item
   attr_accessor :name, :sell_in, :quality
 
