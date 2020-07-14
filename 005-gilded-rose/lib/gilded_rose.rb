@@ -10,16 +10,7 @@ class GildedRose
   end
 end
 
-class Updater
-  def self.from(item)
-    names_to_updaters = {
-      "Aged Brie" => AgedBrieUpdater,
-      "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
-      "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
-    }
-    names_to_updaters.fetch(item.name, BasicItemUpdater).new(item)
-  end
-
+module Updater
   class BasicItemUpdater
     attr_reader :item
 
@@ -87,15 +78,25 @@ class Updater
       end
     end
   end
-end
 
-class SulfurasUpdater
-  attr_reader :item
-  def initialize(item)
-    @item = item
+  class SulfurasUpdater
+    attr_reader :item
+    def initialize(item)
+      @item = item
+    end
+
+    def update
+    end
   end
 
-  def update
+  NAMES_TO_UPDATERS = {
+    "Aged Brie" => AgedBrieUpdater,
+    "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
+    "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
+  }.freeze
+
+  def self.from(item)
+    NAMES_TO_UPDATERS.fetch(item.name, BasicItemUpdater).new(item)
   end
 end
 
