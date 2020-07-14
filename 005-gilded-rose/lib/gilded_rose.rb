@@ -13,15 +13,7 @@ class GildedRose
 
   def update(item)
     if item.name == "Aged Brie"
-      if item.quality < 50
-        item.quality = item.quality + 1
-      end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
+      AgedBrieUpdater.new(item).update
       nil
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       if item.quality < 50
