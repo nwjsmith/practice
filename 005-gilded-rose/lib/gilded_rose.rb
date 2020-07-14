@@ -12,14 +12,14 @@ class GildedRose
   private
 
   def update(item)
-    if item.name == "Aged Brie"
-      updater = AgedBrieUpdater
+    updater = if item.name == "Aged Brie"
+      AgedBrieUpdater
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-      updater = BackstagePassesUpdater
+      BackstagePassesUpdater
     elsif item.name == "Sulfuras, Hand of Ragnaros"
-      updater = SulfurasUpdater
+      SulfurasUpdater
     else
-      updater = BasicItemUpdater
+      BasicItemUpdater
     end
     updater.new(item).update
   end
