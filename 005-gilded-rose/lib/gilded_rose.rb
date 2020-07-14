@@ -19,6 +19,7 @@ class GildedRose
       BackstagePassesUpdater.new(item).update
       nil
     elsif item.name == "Sulfuras, Hand of Ragnaros"
+      SulfurasUpdater.new(item).update
       nil
     else
       if item.quality > 0
@@ -80,6 +81,16 @@ class BackstagePassesUpdater
     if item.sell_in < 0
       item.quality = item.quality - item.quality
     end
+  end
+end
+
+class SulfurasUpdater
+  attr_reader :item
+  def initialize(item)
+    @item = item
+  end
+
+  def update
   end
 end
 
