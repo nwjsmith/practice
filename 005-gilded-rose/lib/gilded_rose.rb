@@ -6,13 +6,7 @@ class GildedRose
   end
 
   def update_quality
-    items.each(&method(:update))
-  end
-
-  private
-
-  def update(item)
-    Updater.from(item).update
+    items.each { |item| Updater.from(item).update }
   end
 end
 
