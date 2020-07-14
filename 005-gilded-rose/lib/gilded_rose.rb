@@ -24,20 +24,17 @@ class GildedRose
       end
       nil
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
+      if item.quality < 50
+        item.quality = item.quality + 1
+        if item.name == "Backstage passes to a TAFKAL80ETC concert"
+          if item.sell_in < 11
+            if item.quality < 50
+              item.quality = item.quality + 1
             end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
+          end
+          if item.sell_in < 6
+            if item.quality < 50
+              item.quality = item.quality + 1
             end
           end
         end
