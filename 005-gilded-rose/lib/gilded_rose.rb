@@ -13,11 +13,10 @@ class GildedRose
 
   def update(item)
     if item.name == "Aged Brie"
-
+      applesauce(item)
     else
-      
+      applesauce(item)
     end
-    applesauce(item)
   end
 
   def applesauce(item)
