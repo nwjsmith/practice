@@ -22,16 +22,32 @@ class GildedRose
       SulfurasUpdater.new(item).update
       nil
     else
+      update_base_item(item)
+      nil
+    end
+  end
+
+  def update_base_item(item)
+    BasicItemUpdater.new(item).update
+  end
+end
+
+class BasicItemUpdater
+  attr_reader :item
+
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    if item.quality > 0
+      item.quality = item.quality - 1
+    end
+    item.sell_in = item.sell_in - 1
+    if item.sell_in < 0
       if item.quality > 0
         item.quality = item.quality - 1
       end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
-        if item.quality > 0
-          item.quality = item.quality - 1
-        end
-      end
-      nil
     end
   end
 end
