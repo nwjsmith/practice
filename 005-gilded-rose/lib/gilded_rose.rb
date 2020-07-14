@@ -22,14 +22,11 @@ class GildedRose
       SulfurasUpdater.new(item).update
       nil
     else
-      update_base_item(item)
+      BasicItemUpdater.new(item).update
       nil
     end
   end
 
-  def update_base_item(item)
-    BasicItemUpdater.new(item).update
-  end
 end
 
 class BasicItemUpdater
