@@ -14,19 +14,14 @@ class GildedRose
   def update(item)
     if item.name == "Aged Brie"
       AgedBrieUpdater.new(item).update
-      nil
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       BackstagePassesUpdater.new(item).update
-      nil
     elsif item.name == "Sulfuras, Hand of Ragnaros"
       SulfurasUpdater.new(item).update
-      nil
     else
       BasicItemUpdater.new(item).update
-      nil
     end
   end
-
 end
 
 class BasicItemUpdater
