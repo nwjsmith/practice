@@ -11,82 +11,86 @@ class GildedRose
 
   private
 
-
   def update(item)
+    Updater.from(item).update
+  end
+end
+
+class Updater
+  def self.from(item)
     names_to_updaters = {
       "Aged Brie" => AgedBrieUpdater,
       "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
       "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
     }
-    updater = names_to_updaters.fetch(item.name, BasicItemUpdater)
-    updater.new(item).update
-  end
-end
-
-class BasicItemUpdater
-  attr_reader :item
-
-  def initialize(item)
-    @item = item
+    names_to_updaters.fetch(item.name, BasicItemUpdater).new(item)
   end
 
-  def update
-    if item.quality > 0
-      item.quality = item.quality - 1
+  class BasicItemUpdater
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
     end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
+
+    def update
       if item.quality > 0
         item.quality = item.quality - 1
       end
+      item.sell_in = item.sell_in - 1
+      if item.sell_in < 0
+        if item.quality > 0
+          item.quality = item.quality - 1
+        end
+      end
     end
   end
-end
 
-class AgedBrieUpdater
-  attr_reader :item
+  class AgedBrieUpdater
+    attr_reader :item
 
-  def initialize(item)
-    @item = item
-  end
-
-  def update
-    if item.quality < 50
-      item.quality = item.quality + 1
+    def initialize(item)
+      @item = item
     end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
+
+    def update
       if item.quality < 50
         item.quality = item.quality + 1
       end
-    end
-  end
-end
-
-class BackstagePassesUpdater
-  attr_reader :item
-
-  def initialize(item)
-    @item = item
-  end
-
-  def update
-    if item.quality < 50
-      item.quality = item.quality + 1
-      if item.sell_in < 11
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
-      if item.sell_in < 6
+      item.sell_in = item.sell_in - 1
+      if item.sell_in < 0
         if item.quality < 50
           item.quality = item.quality + 1
         end
       end
     end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
-      item.quality = item.quality - item.quality
+  end
+
+  class BackstagePassesUpdater
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update
+      if item.quality < 50
+        item.quality = item.quality + 1
+        if item.sell_in < 11
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+        if item.sell_in < 6
+          if item.quality < 50
+            item.quality = item.quality + 1
+          end
+        end
+      end
+      item.sell_in = item.sell_in - 1
+      if item.sell_in < 0
+        item.quality = item.quality - item.quality
+      end
     end
   end
 end
