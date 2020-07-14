@@ -11,7 +11,7 @@ class GildedRose
 end
 
 module Updater
-  class BasicItemUpdater
+  class NormalUpdater
     attr_reader :item
 
     def initialize(item)
@@ -96,7 +96,7 @@ module Updater
   }.freeze
 
   def self.from(item)
-    NAMES_TO_UPDATERS.fetch(item.name, BasicItemUpdater).new(item)
+    NAMES_TO_UPDATERS.fetch(item.name, NormalUpdater).new(item)
   end
 end
 
