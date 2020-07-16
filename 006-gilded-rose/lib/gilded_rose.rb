@@ -11,94 +11,102 @@ class GildedRose
 
   private
 
-  class AgedBrieUpdater
-    attr_reader :item
+  module Updater
+    class AgedBrieUpdater
+      attr_reader :item
 
-    def initialize(item)
-      @item = item
-    end
-
-    def update
-      if item.quality < 50
-        item.quality = item.quality + 1
+      def initialize(item)
+        @item = item
       end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
+
+      def update
         if item.quality < 50
           item.quality = item.quality + 1
         end
-      end
-    end
-  end
-
-  class BackstagePassesUpdater
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
-    def update
-      if item.quality < 50
-        item.quality = item.quality + 1
-        if item.sell_in < 11
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
-        if item.sell_in < 6
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0
           if item.quality < 50
             item.quality = item.quality + 1
           end
         end
       end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
-        item.quality = item.quality - item.quality
+    end
+
+    class BackstagePassesUpdater
+      attr_reader :item
+
+      def initialize(item)
+        @item = item
       end
-      nil
-    end
-  end
 
-  class SulfurasUpdater
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
-    def update
-      nil
-    end
-  end
-
-  class NormalUpdater
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
-    def update
-      if item.quality > 0
-        item.quality = item.quality - 1
+      def update
+        if item.quality < 50
+          item.quality = item.quality + 1
+          if item.sell_in < 11
+            if item.quality < 50
+              item.quality = item.quality + 1
+            end
+          end
+          if item.sell_in < 6
+            if item.quality < 50
+              item.quality = item.quality + 1
+            end
+          end
+        end
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0
+          item.quality = item.quality - item.quality
+        end
+        nil
       end
-      item.sell_in = item.sell_in - 1
-      if item.sell_in < 0
+    end
+
+    class SulfurasUpdater
+      attr_reader :item
+
+      def initialize(item)
+        @item = item
+      end
+
+      def update
+        nil
+      end
+    end
+
+    class NormalUpdater
+      attr_reader :item
+
+      def initialize(item)
+        @item = item
+      end
+
+      def update
         if item.quality > 0
           item.quality = item.quality - 1
         end
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0
+          if item.quality > 0
+            item.quality = item.quality - 1
+          end
+        end
+        nil
       end
-      nil
+    end
+
+    NAME_TO_UPDATER = {
+      "Aged Brie" => AgedBrieUpdater,
+      "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
+      "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
+    }
+
+    def self.for(item)
+      NAME_TO_UPDATER.fetch(item.name, NormalUpdater).new(item)
     end
   end
 
   def update(item)
-    {
-      "Aged Brie" => AgedBrieUpdater,
-      "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
-      "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
-    }.fetch(item.name, NormalUpdater).new(item).update
+    Updater.for(item).update
   end
 end
 
