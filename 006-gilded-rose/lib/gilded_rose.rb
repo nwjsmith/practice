@@ -42,6 +42,8 @@ class GildedRose
         item.quality = item.quality - item.quality
       end
       nil
+    elsif item.name == "Sulfuras, Hand of Ragnaros"
+      applesauce(item)
     else
       applesauce(item)
     end
