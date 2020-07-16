@@ -13,12 +13,9 @@ class GildedRose
 
   def update(item)
     if item.name == "Aged Brie"
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-          end
+      if item.quality < 50
+        item.quality = item.quality + 1
+        if item.name == "Backstage passes to a TAFKAL80ETC concert"
         end
       end
       if item.name != "Sulfuras, Hand of Ragnaros"
