@@ -94,16 +94,11 @@ class GildedRose
   end
 
   def update(item)
-    if item.name == "Aged Brie"
-      updater = AgedBrieUpdater
-    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-      updater = BackstagePassesUpdater
-    elsif item.name == "Sulfuras, Hand of Ragnaros"
-      updater = SulfurasUpdater
-    else
-      updater = NormalUpdater
-    end
-    updater.new(item).update
+    {
+      "Aged Brie" => AgedBrieUpdater,
+      "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesUpdater,
+      "Sulfuras, Hand of Ragnaros" => SulfurasUpdater
+    }.fetch(item.name, NormalUpdater).new(item).update
   end
 end
 
