@@ -1,24 +1,7 @@
 class GildedRose
   module Updater
-    class AgedBrieUpdater
-      attr_reader :item
+    require_relative 'gilded_rose/updater/aged_brie_updater.rb'
 
-      def initialize(item)
-        @item = item
-      end
-
-      def update
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
-      end
-    end
 
     class BackstagePassesUpdater
       attr_reader :item
