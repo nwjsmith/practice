@@ -43,29 +43,25 @@ class GildedRose
       end
       nil
     elsif item.name == "Sulfuras, Hand of Ragnaros"
-      applesauce(item)
+      nil
     else
-      applesauce(item)
-    end
-  end
-
-  def applesauce(item)
-    if item.quality > 0
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.quality = item.quality - 1
-      end
-    end
-    if item.name != "Sulfuras, Hand of Ragnaros"
-      item.sell_in = item.sell_in - 1
-    end
-    if item.sell_in < 0
       if item.quality > 0
         if item.name != "Sulfuras, Hand of Ragnaros"
           item.quality = item.quality - 1
         end
       end
+      if item.name != "Sulfuras, Hand of Ragnaros"
+        item.sell_in = item.sell_in - 1
+      end
+      if item.sell_in < 0
+        if item.quality > 0
+          if item.name != "Sulfuras, Hand of Ragnaros"
+            item.quality = item.quality - 1
+          end
+        end
+      end
+      nil
     end
-    nil
   end
 
 
