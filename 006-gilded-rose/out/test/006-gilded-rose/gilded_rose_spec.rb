@@ -17,7 +17,7 @@ RSpec.describe GildedRose do
 
         GildedRose.new(items).update_quality
 
-        items.map(&:to_s)
+        items
       end
     end
   end
