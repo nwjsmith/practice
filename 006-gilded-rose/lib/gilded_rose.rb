@@ -78,7 +78,7 @@ class GildedRose
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       BackstagePassesUpdater.new(item).update
     elsif item.name == "Sulfuras, Hand of Ragnaros"
-      nil
+      SulfurasUpdater.new(item).update
     else
       if item.quality > 0
         item.quality = item.quality - 1
