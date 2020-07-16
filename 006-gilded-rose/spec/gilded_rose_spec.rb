@@ -13,7 +13,12 @@ RSpec.describe GildedRose do
 
     it "is characterized" do
       verify do
-        items = [Item.new("foo", 0, 0)]
+        names = ["foo"]
+        sell_ins = [0]
+        qualities = [0]
+        items = names.product(sell_ins, qualities).map { |name, sell_in, quality|
+          Item.new(name, sell_in, quality)
+        }
 
         GildedRose.new(items).update_quality
 
